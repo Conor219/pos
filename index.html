@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS</title> 
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/functions.js"></script>
+
+</head>
+<body>
+    <!-- Imagen en la esquina superior izquierda -->
+     <img src="img/logo.png" class="logoiz" alt="">
+
+    <!-- Titulo principal -->
+     <div class="cabecera">
+        <div>
+            <h1 class="titulo">Tienda de Doña Pelos</h1>
+            <h2 class="subtitulo">Nuestros productos tienen pelos al mejor precio</h2>
+        </div>
+     </div>
+
+    <!-- Imagen en la esquina superior derecha -->
+     <img src="img/logo.png" class="logode" alt="">
+    <!-- Tabla para mostrar detalles del carrito -->
+<div class="detalles">
+
+    <table border="0", id="tabla1">
+        <thead>
+        <tr>
+            <th>Cantidad</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody id="carrito">
+
+            
+
+        </tbody>
+    </table>
+
+</div>
+
+<!-- En esta area el usuario introduce los codigos o precios de los productos -->
+<input type="text" id="inputCodigo" class="codigo" placeholder="Codigo o precio" value="" onkeydown="buscarProducto(event)" autofocus>
+
+<!-- Botones -->
+<div class="botonera">
+    <input type="button" id="btn1" class="botones" title="boton1">
+    <input type="button" id="btn2" class="botones" title="boton2">
+    <input type="button" id="btn3" class="botones" title="boton3">
+    <input type="button" id="btn4" class="botones" title="boton4">
+    <input type="button" id="btn5" class="botones" title="boton5">
+
+    <div class="cambio">
+        <h1 id="montoCambio"> </h1>
+    </div>
+
+    <div class="total">
+        <h1 id="monto"> $ 0.00 </h1>
+    </div>
+
+</div>
+
+</body>
+</html>
