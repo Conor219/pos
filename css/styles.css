@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* Estilos generales */
 * {
@@ -318,3 +319,340 @@ th, h1, h2, tbody, td, tr {
     display: flex; /* Coloca los botones en un layout flexible en línea */
     align-items: center; /* Centra verticalmente los botones */
 }
+
+/* =============================
+   Modern UI overrides (POS)
+   — sin tocar el HTML —
+   Estas reglas se aplican al final
+   para refrescar el look & feel.
+   ============================= */
+
+:root {
+    /* Paleta profesional */
+    --bg: #0f172a;               /* slate-900 */
+    --bg-soft: #111827;          /* gray-900 */
+    --surface: #0b1220;          /* Dark card */
+    --surface-2: #101828;        /* Slightly lighter */
+    --text: #e5e7eb;             /* gray-200 */
+    --muted: #9aa4b2;            /* gray-400 */
+    --primary: #7c3aed;          /* violet-600 */
+    --primary-2: #22d3ee;        /* cyan-400 */
+    --success: #22c55e;          /* green-500 */
+    --warning: #f59e0b;          /* amber-500 */
+    --danger: #ef4444;           /* red-500 */
+
+    --radius: 14px;
+    --radius-md: 12px;
+    --radius-sm: 10px;
+    --shadow-1: 0 6px 18px rgba(0,0,0,.35);
+    --shadow-2: 0 10px 28px rgba(0,0,0,.45);
+    --ring: 0 0 0 3px rgba(124, 58, 237, .35);
+}
+
+/* Fondo sobrio con gradiente radial sutil */
+body {
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.18), transparent 60%),
+                radial-gradient(1200px 600px at 90% 20%, rgba(34,211,238,.18), transparent 60%),
+                linear-gradient(180deg, var(--bg) 0%, #0b1323 60%, #0b1323 100%);
+    color: var(--text);
+    line-height: 1.35;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Cabecera tipo “glass card” discreta */
+.cabecera {
+    background: linear-gradient(180deg, rgba(16,24,40,.65), rgba(16,24,40,.45));
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+    padding: 12px 18px;
+}
+.titulo {
+    color: #e9e5ff; /* título claro */
+    letter-spacing: .3px;
+    font-weight: 700;
+}
+.subtitulo {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* Contenedor de detalles (carrito) */
+.detalles {
+    background: linear-gradient(180deg, rgba(16,24,40,.75), rgba(16,24,40,.6));
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+}
+
+/* Tabla moderna - estilo minimalista elegante */
+#tabla1 {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+#tabla1 thead {
+    top: 0;
+}
+#tabla1 th {
+    background: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 16px 20px;
+    border: none;
+    border-bottom: 2px solid #e2e8f0;
+    text-transform: uppercase;
+    font-size: 1rem;
+    text-align: left;
+}
+#tabla1 thead th:first-child { 
+    padding-left: 24px;
+}
+#tabla1 thead th:last-child  { 
+    padding-right: 24px;
+}
+#tabla1 tbody tr + tr td { border-top: 1px solid #f1f5f9; }
+#tabla1 td {
+    background: #ffffff;
+    color: #334155;
+    padding: 14px 20px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+#tabla1 tbody tr td:first-child { padding-left: 24px; color: #64748b; }
+#tabla1 tbody tr td:last-child { padding-right: 24px; font-weight: 600; color: #0f172a; }
+#tabla1 tbody tr:nth-child(odd) td { background: #ffffff; }
+#tabla1 tbody tr:nth-child(even) td { background: #f9fafb; }
+#tabla1 tr:hover td { 
+    background: #f1f5f9; 
+    transform: none; 
+    box-shadow: none;
+    transition: background 0.15s ease;
+}
+
+/* Input de códigos */
+.codigo {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,.08);
+    color: var(--text);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    box-shadow: var(--shadow-1);
+}
+.codigo::placeholder { color: var(--muted); }
+.codigo:focus {
+    border-color: rgba(124, 58, 237, .6);
+    box-shadow: var(--ring), var(--shadow-2);
+    transform: none;
+}
+
+/* Botonera de acciones */
+.botonera {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+.botones {
+    height: 88px;
+    width: 124px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: var(--shadow-1);
+    transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.botones:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2);
+    border-color: rgba(124,58,237,.35);
+    background-color: #fcfcfd;
+}
+.botones:active { transform: translateY(-1px); }
+
+/* Tarjetas KPI (Cambio y Total) */
+.cambio, .total {
+    min-height: 84px;
+    width: clamp(240px, 22vw, 360px);
+    margin-left: auto;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-1);
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+/* Orden y posición: Cambio a la izquierda del Total en pantallas amplias */
+.cambio { order: 2; margin-left: auto; }
+.total  { order: 3; margin-left: 12px; }
+.cambio, .total { flex: 0 0 auto; }
+
+@media (max-width: 1100px) {
+    /* En pantallas medianas/pequeñas permitimos el wrap natural */
+    .cambio { order: initial; margin-left: auto; }
+    .total  { order: initial; margin-left: 12px; }
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .botonera { gap: 10px; }
+    .botones { width: 112px; height: 80px; }
+    .cambio, .total { width: clamp(220px, 42vw, 360px); }
+}
+
+@media (max-width: 600px) {
+    .titulo { font-size: 1.4rem; }
+    .subtitulo { font-size: .9rem; }
+    #tabla1 th { padding: 12px; font-size: .9rem; }
+    #tabla1 td { padding: 12px; font-size: .95rem; }
+    .codigo { padding: 10px 14px; }
+    .botones { width: 104px; height: 74px; }
+    .cambio h1, .total h1 { font-size: clamp(.95rem, 4.2vw, 1.25rem); }
+}
+
+.cambio {
+    background: linear-gradient(135deg, rgba(34,197,94,.9), rgba(34,211,238,.85));
+    color: #06251b;
+}
+.total {
+    background: linear-gradient(135deg, rgba(244,114,182,.9), rgba(251,191,36,.9));
+    color: #2b1e06;
+}
+
+.cambio h1, .total h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.15;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Logos más sutiles */
+.logoiz, .logode {
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
+}
+
+/* =============================
+   Light mode overrides (POS)
+   ============================= */
+
+:root {
+    /* Paleta clara profesional */
+    --bg: #f6f8fb;               /* fondo general */
+    --bg-soft: #ffffff;          /* paneles */
+    --surface: #ffffff;          /* cards */
+    --surface-2: #f9fafb;        /* variantes claras */
+    --text: #1f2937;             /* gris muy oscuro */
+    --muted: #6b7280;            /* gris medio */
+    --primary: #7c3aed;          /* violeta */
+    --primary-2: #06b6d4;        /* cyan */
+    --success: #16a34a;          /* verde */
+    --warning: #f59e0b;          /* ámbar */
+    --danger: #dc2626;           /* rojo */
+
+    --radius: 14px;
+    --radius-md: 12px;
+    --radius-sm: 10px;
+    --shadow-1: 0 8px 20px rgba(2,6,23,.06);
+    --shadow-2: 0 14px 32px rgba(2,6,23,.10);
+    --ring: 0 0 0 3px rgba(124, 58, 237, .25);
+}
+
+/* Fondo claro con acentos sutiles */
+body {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1000px 500px at 10% 0%, rgba(124,58,237,.08), transparent 55%),
+                radial-gradient(900px 500px at 90% 10%, rgba(6,182,212,.08), transparent 55%),
+                linear-gradient(180deg, var(--bg) 0%, #ffffff 60%, #ffffff 100%);
+    color: var(--text);
+}
+
+.cabecera {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-1);
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.titulo { color: #3b3763; font-weight: 800; letter-spacing: .2px; }
+.subtitulo { color: var(--muted); font-weight: 500; }
+
+.detalles {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-1);
+}
+
+/* Tabla clara - DISEÑO COMPLETAMENTE NUEVO */
+#tabla1 th {
+    background: #f8fafc;
+    color: #64748b;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 16px 20px;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+#tabla1 thead th:first-child { 
+    border-radius: 0;
+    padding-left: 24px;
+}
+#tabla1 thead th:last-child  { 
+    border-radius: 0;
+    padding-right: 24px;
+}
+/* Remover líneas entre columnas */
+#tabla1 th:not(:last-child)::after {
+    display: none;
+}
+#tabla1 td { background: #ffffff; }
+#tabla1 tbody tr:hover td { background: #f3f4f6; }
+
+/* Input claro */
+.codigo {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: var(--text);
+    box-shadow: var(--shadow-1);
+    border-radius: 12px;
+}
+.codigo:focus {
+    border-color: #c7b5ff;
+    box-shadow: var(--ring), var(--shadow-1);
+}
+.codigo::placeholder { color: #9ca3af; }
+
+/* Botones claros */
+.botones {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-1);
+}
+.botones:hover { border-color: rgba(124,58,237,.35); }
+
+/* Tarjetas KPI claras */
+.cambio, .total {
+    background: #ffffff; /* fallback */
+    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-1);
+    color: var(--text);
+}
+.cambio {
+    background: linear-gradient(135deg, #86efac 0%, #a5f3fc 100%);
+    color: #0b1220;
+}
+.total {
+    background: linear-gradient(135deg, #fbcfe8 0%, #fde68a 100%);
+    color: #261a07;
+}
+.cambio h1, .total h1 { color: inherit; }
+.cambio h1::before { color: rgba(0,0,0,.55); }
