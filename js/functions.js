@@ -121,8 +121,6 @@ function buscarProducto (event){
     // Presionar C - Borrar toda la lista de productos
     if (event.key === "c" || event.key === "C") {
         limpiarCarrito();
-        // También limpiar el cambio
-        document.getElementById("montoCambio").innerHTML = "";
         event.preventDefault();
         return;
     }
@@ -149,9 +147,6 @@ function buscarProducto (event){
             if (codigo==productos[index][0]) {
                 //alert("Encontre el producto " + productos[index][1]);
 
-                // Limpiar el cambio al agregar un nuevo producto
-                document.getElementById("montoCambio").innerHTML = "";
-
                 //Agregamos el producto al carrito, en este caso la pantalla en blanco.
                 var table=document.getElementById("carrito");
                 var row=table.insertRow();
@@ -166,7 +161,7 @@ function buscarProducto (event){
                 celda4.innerHTML = (parseFloat(productos[index][2])*cantidad).toFixed(2);
                 //celda4.innerHTML=productos[index][2]; //string. es igual a multiplicar la cantidad por el precio unitario
                 
-                // Actualizar el total general
+                // Actualizar el total general (esto también limpiará cualquier mensaje de cambio)
                 actualizarTotal();
             }
         }
@@ -249,10 +244,11 @@ function limpiarCarrito() {
 // Función para procesar el pago (tecla P)
 function procesarPago() {
     var table = document.getElementById("carrito");
+    var montoElement = document.getElementById("monto");
     
     // Verificar que haya productos en el carrito
     if (table.rows.length === 0) {
-        alert("No hay productos en el carrito.");
+        montoElement.innerHTML = "No hay productos en el carrito";
         return;
     }
     
@@ -261,7 +257,7 @@ function procesarPago() {
     
     // Validar que se haya ingresado un monto válido
     if (isNaN(efectivo) || efectivo <= 0) {
-        alert("Por favor, ingrese un monto válido de efectivo.");
+        montoElement.innerHTML = "Por favor, ingrese un monto válido de efectivo";
         return;
     }
     
@@ -281,7 +277,7 @@ function procesarPago() {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
-        alert("Efectivo insuficiente. Faltan: $" + faltanteFormateado);
+        montoElement.innerHTML = "Efectivo insuficiente. Faltan: $" + faltanteFormateado;
         return;
     }
     
@@ -295,10 +291,13 @@ function procesarPago() {
     });
     
     // Mostrar el cambio en la interfaz
-    document.getElementById("montoCambio").innerHTML = "Cambio: $ " + cambioFormateado;
+    montoElement.innerHTML = "Cambio: $ " + cambioFormateado;
     
-    // Limpiar el carrito después de mostrar el cambio
-    setTimeout(function() {
-        limpiarCarrito();
-    }, 100);
+    // Limpiar solo la tabla del carrito, sin tocar el campo del monto
+    while (table.rows.length > 0) {
+        table.deleteRow(0);
+    }
+    
+    // Limpiar el campo de búsqueda
+    document.getElementById("inputCodigo").value = "";
 }

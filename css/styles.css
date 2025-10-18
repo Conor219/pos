@@ -260,8 +260,10 @@ th, h1, h2, tbody, td, tr {
 {
     display: flex;
     border: none;
-    height: 5dvw;
-    width: 30%;
+    min-height: 5dvw;
+    width: auto;
+    min-width: 30%;
+    max-width: 70%;
     margin-left: auto;
     font-size: x-large;
     align-items: center;
@@ -272,46 +274,22 @@ th, h1, h2, tbody, td, tr {
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
     color: #2d3436;
     transition: all 0.3s ease;
+    padding: 10px 20px;
+}
+
+.total h1 {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.2;
+    text-align: center;
+    word-break: break-word;
+    max-width: 100%;
+    white-space: normal;
 }
 
 .total:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-}
-
-.cambio
-{
-    display: flex;
-    flex-direction: column;
-    border: none;
-    height: 5dvw;
-    width: 30%;
-    margin-left: auto;
-    margin-right: 15px;
-    padding: 5px 10px;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    background: linear-gradient(135deg, #6BCF7F 0%, #4ECDC4 100%);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(107, 207, 127, 0.3);
-    color: white;
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-.cambio h1 {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin: 0;
-    line-height: 1.2;
-    text-align: center;
-    word-break: break-word;
-    max-width: 100%;
-}
-
-.cambio:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(107, 207, 127, 0.4);
 }
 
 .botonera
@@ -473,10 +451,12 @@ body {
 }
 .botones:active { transform: translateY(-1px); }
 
-/* Tarjetas KPI (Cambio y Total) */
-.cambio, .total {
+/* Tarjetas KPI (Total) */
+.total {
     min-height: 84px;
-    width: clamp(240px, 22vw, 360px);
+    width: auto;
+    min-width: clamp(240px, 22vw, 360px);
+    max-width: clamp(400px, 70vw, 800px);
     margin-left: auto;
     border-radius: 14px;
     border: 1px solid #e5e7eb;
@@ -489,22 +469,17 @@ body {
     gap: 4px;
 }
 
-/* Orden y posición: Cambio a la izquierda del Total en pantallas amplias */
-.cambio { order: 2; margin-left: auto; }
-.total  { order: 3; margin-left: 12px; }
-.cambio, .total { flex: 0 0 auto; }
+.total { order: 3; margin-left: auto; flex: 0 0 auto; }
 
 @media (max-width: 1100px) {
-    /* En pantallas medianas/pequeñas permitimos el wrap natural */
-    .cambio { order: initial; margin-left: auto; }
-    .total  { order: initial; margin-left: 12px; }
+    .total { order: initial; margin-left: auto; }
 }
 
 /* Responsivo */
 @media (max-width: 992px) {
     .botonera { gap: 10px; }
     .botones { width: 112px; height: 80px; }
-    .cambio, .total { width: clamp(220px, 42vw, 360px); }
+    .total { min-width: clamp(220px, 42vw, 360px); }
 }
 
 @media (max-width: 600px) {
@@ -514,19 +489,15 @@ body {
     #tabla1 td { padding: 12px; font-size: .95rem; }
     .codigo { padding: 10px 14px; }
     .botones { width: 104px; height: 74px; }
-    .cambio h1, .total h1 { font-size: clamp(.95rem, 4.2vw, 1.25rem); }
+    .total h1 { font-size: clamp(.95rem, 4.2vw, 1.25rem); }
 }
 
-.cambio {
-    background: linear-gradient(135deg, rgba(34,197,94,.9), rgba(34,211,238,.85));
-    color: #06251b;
-}
 .total {
     background: linear-gradient(135deg, rgba(244,114,182,.9), rgba(251,191,36,.9));
     color: #2b1e06;
 }
 
-.cambio h1, .total h1 {
+.total h1 {
     margin: 0;
     font-weight: 800;
     font-size: clamp(1rem, 2vw, 1.5rem);
@@ -640,19 +611,14 @@ body {
 .botones:hover { border-color: rgba(124,58,237,.35); }
 
 /* Tarjetas KPI claras */
-.cambio, .total {
+.total {
     background: #ffffff; /* fallback */
     border: 1px solid #e5e7eb;
     box-shadow: var(--shadow-1);
     color: var(--text);
 }
-.cambio {
-    background: linear-gradient(135deg, #86efac 0%, #a5f3fc 100%);
-    color: #0b1220;
-}
 .total {
     background: linear-gradient(135deg, #fbcfe8 0%, #fde68a 100%);
     color: #261a07;
 }
-.cambio h1, .total h1 { color: inherit; }
-.cambio h1::before { color: rgba(0,0,0,.55); }
+.total h1 { color: inherit; }
